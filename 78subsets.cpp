@@ -2,8 +2,8 @@
 //
 //Note:
 //
-//ÎõÎéElements in a subset must be in non-descending order.
-//ÎõÎéThe solution set must not contain duplicate subsets.
+//Elements in a subset must be in non-descending order.
+//The solution set must not contain duplicate subsets.
 //
 //
 //For example,
