@@ -33,16 +33,16 @@ public:
         }
         
         if (divisor_num == 1)
-    {
-    if (dividend_num >= INT_MAX)
-    {
-    return (neg == 1) ? INT_MIN : INT_MAX;
-    }
-    else
-    {
-    return (neg == 1) ? -dividend_num : dividend_num;
-    }
-    }
+        {
+          if (dividend_num >= INT_MAX)
+          {
+            return (neg == 1) ? INT_MIN : INT_MAX;
+          }
+          else
+          {
+            return (neg == 1) ? -dividend_num : dividend_num;
+          }
+        }
         
         if (dividend_num < divisor_num)
         {
