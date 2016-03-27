@@ -27,134 +27,134 @@
 //
 vector<int> maxNumber_arr(vector<int>nums, int len)
 {
-vector<int>result;
+  vector<int>result;
 
-if (len == 0)
-{
-return result;
-}
+  if (len == 0)
+  {
+    return result;
+  }
 
-for (int i = 0; i < nums.size(); i++)
-{
-int remain = nums.size() - i;
-while (result.size() > 0 && result.size() + remain > len && nums[i] > result[result.size() - 1])
-{
-result.pop_back();
-}
+  for (int i = 0; i < nums.size(); i++)
+  {
+    int remain = nums.size() - i;
+    while (result.size() > 0 && result.size() + remain > len && nums[i] > result[result.size() - 1])
+    {
+      result.pop_back();
+    }
 
-if (result.size() < len)
-{
-result.push_back(nums[i]);
-}
-}
+    if (result.size() < len)
+    {
+      result.push_back(nums[i]);
+    }
+  }
 
-return result;
+  return result;
 }
 
 int merge_cal(vector<int>r1, vector<int>r2, vector<int>&result_arr)
 {
-int i = 0, j = 0;
+  int i = 0, j = 0;
 
-int result = 0;
-while (i < r1.size() && j < r2.size())
-{
-if (r1[i] > r2[j])
-{
-result_arr.push_back(r1[i]);
-result = result * 10 + r1[i];
-i++;
-}
-else if (r1[i] < r2[j])
-{
-result_arr.push_back(r2[j]);
-result = result * 10 + r2[j];
-j++;
-}
-else
-{
-int i_temp = i + 1, j_temp = j + 1;
-while (i_temp < r1.size() && j_temp < r2.size() && r1[i_temp] == r2[j_temp])
-{
-i_temp++;
-j_temp++;
-}
-if (i_temp == r1.size())
-{
-result_arr.push_back(r2[j]);
-result = result * 10 + r2[j];
-j++;
-}
-else if (j_temp == r2.size())
-{
-result_arr.push_back(r1[i]);
-result = result * 10 + r1[i];
-i++;
-}
-else
-{
-if (r1[i_temp] > r2[j_temp])
-{
+  int result = 0;
+  while (i < r1.size() && j < r2.size())
+  {
+    if (r1[i] > r2[j])
+    {
+      result_arr.push_back(r1[i]);
+      result = result * 10 + r1[i];
+      i++;
+    }
+    else if (r1[i] < r2[j])
+    {
+      result_arr.push_back(r2[j]);
+      result = result * 10 + r2[j];
+      j++;
+    }
+    else
+    {
+      int i_temp = i + 1, j_temp = j + 1;
+      while (i_temp < r1.size() && j_temp < r2.size() && r1[i_temp] == r2[j_temp])
+      {
+        i_temp++;
+        j_temp++;
+      }
+      if (i_temp == r1.size())
+      {
+        result_arr.push_back(r2[j]);
+        result = result * 10 + r2[j];
+        j++;
+      }
+      else if (j_temp == r2.size())
+      {
+        result_arr.push_back(r1[i]);
+        result = result * 10 + r1[i];
+        i++;
+      }
+      else
+      {
+        if (r1[i_temp] > r2[j_temp])
+        {
+          result_arr.push_back(r1[i]);
+          result = result * 10 + r1[i];
+          i++;
+       }
+       else
+       {
+         result_arr.push_back(r2[j]);
+         result = result * 10 + r2[j];
+         j++;
+      }
+     }
+    }
+  }
+  while (i < r1.size())
+  {
     result_arr.push_back(r1[i]);
-result = result * 10 + r1[i];
-i++;
-}
-else
-{
-result_arr.push_back(r2[j]);
-result = result * 10 + r2[j];
-j++;
-}
-}
-}
-}
-while (i < r1.size())
-{
-result_arr.push_back(r1[i]);
-result = result * 10 + r1[i];
-i++;
-}
-while (j < r2.size())
-{
-result_arr.push_back(r2[j]);
-result = result * 10 + r2[j];
-j++;
-}
-return result;
+    result = result * 10 + r1[i];
+    i++;
+  }
+  while (j < r2.size())
+  {
+    result_arr.push_back(r2[j]);
+    result = result * 10 + r2[j];
+    j++;
+  }
+  return result;
 }
 
 
 bool greater_check(const vector<int> & a, int start1, const vector<int> &b, int start2) 
 {
-for (; start1 < a.size() && start2 < b.size(); start1++, start2++) 
-{
-if (a[start1] > b[start2]) 
-{
-    return true;
-}
-if (a[start1] < b[start2]) 
-{
-    return false;
-}
-}
-return start1 != a.size();
+  for (; start1 < a.size() && start2 < b.size(); start1++, start2++) 
+  {
+    if (a[start1] > b[start2]) 
+    {
+      return true;
+   } 
+   if (a[start1] < b[start2]) 
+   {
+     return false;
+   }
+  }
+  return start1 != a.size();
 }
 
 
  vector<int> merge_cal1(vector<int>res1, vector<int>res2, int k, int &ret)
  {
 
-vector<int> res(k, 0);
-int pos1 = 0, pos2 = 0, tpos = 0;
+  vector<int> res(k, 0);
+  int pos1 = 0, pos2 = 0, tpos = 0;
 
-while (pos1 < res1.size() || pos2 < res2.size()) 
-{
+  while (pos1 < res1.size() || pos2 < res2.size()) 
+  {
     res[tpos] = greater_check(res1, pos1, res2, pos2) ? res1[pos1++] : res2[pos2++];
     ret = ret*10+res[tpos];
     tpos++;
-}
+  }
 
-return res;
- }
+  return res;
+}
 
 
 class Solution {
